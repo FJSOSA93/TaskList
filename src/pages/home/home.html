@@ -1,14 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+     LISTA DE TAREAS
     </ion-title>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    
+        <ion-item-sliding *ngFor="let task of tasks | async">
+        
+          <ion-item>
+        <input type="text" [(ngModel)]="task.name">
+          </ion-item>
+        <ion-item-options side="right">
+        <button ion-button (click)="addTask(newTask)"><ion-icon name="add-circle"></ion-icon></button>
+        <button color="secondary" ion-button (click)="updateTask(task.$key, task.name)"><ion-icon name="refresh-circle"></ion-icon></button>
+        <button color="danger" ion-button (click)="removeTask(task)"><ion-icon name="trash"></ion-icon></button>
+        
+      </ion-item-options>
+        
+        <ion-item-options side="left">
+          
+        </ion-item-options>
+       
+      </ion-item-sliding>
+
+    </ion-list>
 </ion-content>
+
