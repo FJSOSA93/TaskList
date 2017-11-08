@@ -1,18 +1,36 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Task List Proyecto U2
+
+     LISTA DE TAREAS
+
     </ion-title>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      Task
-    </ion-card-header>
-    <ion-card-content>
-      <!--all code here morros-->
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    
+        <ion-item-sliding *ngFor="let task of tasks | async">
+        
+          <ion-item>
+        <input type="text" [(ngModel)]="task.name">
+          </ion-item>
+        <ion-item-options side="right">
+        <button ion-button (click)="addTask(newTask)"><ion-icon name="add-circle"></ion-icon></button>
+        <button color="secondary" ion-button (click)="updateTask(task.$key, task.name)"><ion-icon name="refresh-circle"></ion-icon></button>
+        <button color="danger" ion-button (click)="removeTask(task)"><ion-icon name="trash"></ion-icon></button>
+        
+      </ion-item-options>
+        
+        <ion-item-options side="left">
+          
+        </ion-item-options>
+       
+      </ion-item-sliding>
+
+    </ion-list>
+
 </ion-content>
+
