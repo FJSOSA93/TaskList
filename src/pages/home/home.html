@@ -15,9 +15,10 @@
         <ion-item-sliding *ngFor="let task of tasks | async" ion-text>
             
             <ion-item>
-                <ion-checkbox dark col-1></ion-checkbox>
-                <ion-input type="text" [(ngModel)]="task.name" col-9></ion-input>
-                <button ion-button col-3></button>
+                
+                <ion-checkbox color="dark" checked="true"></ion-checkbox>
+                <ion-input type="text" [(ngModel)]="task.name"></ion-input>
+                
             </ion-item>
           <!--
           <ion-item>
@@ -28,7 +29,8 @@
         </ion-item>     -->  
         
         <ion-item-options side="right" ion-text>
-
+            <button color="secondary" ion-button (click)="updateTask(task.$key, task.name)"><ion-icon name="refresh-circle"></ion-icon></button>
+            
         
         <button color="danger" ion-button (click)="removeTask(task)"><ion-icon name="add-circle"></ion-icon></button>
         
@@ -49,6 +51,8 @@
     </ion-list>
 
     <ion-fab right bottom>
+        
+        
         <button ion-fab (click)="addTask(newTask)" id="uno"><ion-icon name="md-add-circle"></ion-icon></button>
           
     </ion-fab>
