@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database-deprecated';
+import { ToastController } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-home',
@@ -9,10 +11,10 @@ import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/databas
 export class HomePage {
   tasks: FirebaseListObservable<any[]>;
   items = []; // Variable para ordenar items
-  
+  status= false;
   newTask = {name: ''};
   
-  constructor(public navCtrl: NavController,public db: AngularFireDatabase) {
+  constructor(public navCtrl: NavController,public db: AngularFireDatabase, private toastCtrl: ToastController) {
     this.tasks = db.list('/tasks');
 
     // funciona para reordenar los items
@@ -27,6 +29,7 @@ export class HomePage {
 
   removeTask(task) {
     this.tasks.remove(task);
+    this.presentToast();
   }
 
   addTask(newTask) {
@@ -34,11 +37,19 @@ export class HomePage {
     this.newTask = {name: ''};
   }
 
-  // re ordenar items
-  reorderItems(indexes) {
-    let element = this.items[indexes.from];
-    this.items.splice(indexes.from, 1);
-    this.items.splice(indexes.to, 0, element);
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Se elimino la tarea',
+      duration: 3000,
+      position: 'down'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 }
