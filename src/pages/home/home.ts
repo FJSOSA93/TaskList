@@ -53,7 +53,7 @@ export class HomePage {
 
   Finaliza(key,estado){
     this.tasks.update(key, {estado: true});
-    
+    console.log("estado = "+estado);
   }
 
 }
