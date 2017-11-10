@@ -24,6 +24,7 @@ export class HomePage {
 
   updateTask(key, name) {
     this.tasks.update(key, {name: name});
+    this.presentToast2();
   }
 
   removeTask(task) {
@@ -34,7 +35,11 @@ export class HomePage {
   addTask(newTask) {
     this.tasks.push(newTask);
     this.newTask = {name: '',estado:false};
+<<<<<<< HEAD
     this.presentToastguarda();
+=======
+    
+>>>>>>> 3e65f4343d0492029ec6fbba17bd397ffd22180e
   }
 
 
@@ -82,6 +87,20 @@ export class HomePage {
     this.tasks.update(key, {estado: true});
    
     this.presentToastfinal();
+  }
+
+  presentToast2() {
+    let toast = this.toastCtrl.create({
+      message: 'Se completo la tarea',
+      duration: 3000,
+      position: 'down'
+    });
+  
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
   }
 
 }
