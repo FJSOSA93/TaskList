@@ -1,65 +1,78 @@
-<ion-header>
+<ion-header style="background-color: gray">
   <ion-navbar>
-    <ion-title>
+    <ion-title text-center>
 
-     LISTA DE TAREAS
+      LISTA DE TAREAS
 
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding fondoitem>
-  <ion-list>
-      
-        <ion-item-sliding *ngFor="let task of tasks | async" ion-text>
-            
-            <ion-item>
-                
-             
-                <ion-row>
-                    <ion-col><ion-item><ion-checkbox color="dark" checked="false" col-1></ion-checkbox></ion-item></ion-col>
-                    <ion-col><ion-item><ion-input type="text" [(ngModel)]="task.name"></ion-input></ion-item></ion-col>
-                    
-                </ion-row>
-                
-            </ion-item>
-          <!--
-          <ion-item>
-        
-        <ion-checkbox dark checked="true" disabled="true" col-1></ion-checkbox>
-        <input type="text" [(ngModel)]="task.name" col-9>
-        <button color="secondary" ion-button (click)="updateTask(task.$key, task.name)" col-3><ion-icon name="refresh-circle"></ion-icon></button>
-        </ion-item>     -->  
-        
-        <ion-item-options side="right" ion-text>
-            <button color="secondary" ion-button (click)="updateTask(task.$key, task.name)"><ion-icon name="refresh-circle"></ion-icon></button>
-            
-        
-        <button color="danger" ion-button (click)="removeTask(task)"><ion-icon name="add-circle"></ion-icon></button>
-        
-      </ion-item-options>
-        
+<ion-content padding="true" style="background-color:darkslategray">
+
+  <ion-item color="dark">
+
+    <label for="">Añade una tarea</label>
+
+    <ion-row>
+      <ion-col col-9>
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="newTask.name"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <button color="secondary" ion-button block (click)="addTask(newTask)">
+          <ion-icon name="add-circle"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-item>
+  <br>
+
+  <ion-card>
+
+    <ion-list>
+
+      <!-- creacion de las tareas -->
+
+      <ion-item-sliding *ngFor="let task of tasks | async" ion-text>
+
+
+
+        <ion-item color="dark" id ="1">
+
+          <ion-item style="background-color:burlywood"> <label type="text" style="background-color: burlywood">{{task.name}}</label></ion-item>
+         
+        </ion-item>
+
+
+        <ion-item-options side="right" (ionSwipe)="Finaliza(task.name)">
+          <button color="secondary" ion-button  expandable (click)="Finaliza(task.name)">
+            <ion-icon name="refresh-circle"></ion-icon>
+          </button>
+
+
+
+
+        </ion-item-options>
+
         <ion-item-options side="left" (ionSwipe)="removeTask(task)">
 
-            <button ion-button color="danger" expandable (click)="removeTask(task)">
-                <ion-icon name="trash">  Borrar</ion-icon>
-            </button>
-          
+          <button ion-button color="danger" expandable (click)="removeTask(task)">
+
+            <ion-icon name="trash"> Borrar</ion-icon>
+          </button>
+
         </ion-item-options>
-       
+
       </ion-item-sliding>
 
-     
+
 
     </ion-list>
 
-    <ion-fab right bottom>
-        
-        
-        <button ion-fab (click)="addTask(newTask)" id="uno"><ion-icon name="md-add-circle"></ion-icon></button>
-          
-    </ion-fab>
-
+  
+  </ion-card>
 </ion-content>
-

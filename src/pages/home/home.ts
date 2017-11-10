@@ -14,6 +14,7 @@ export class HomePage {
   status= false;
   newTask = {name: ''};
   
+  
   constructor(public navCtrl: NavController,public db: AngularFireDatabase, private toastCtrl: ToastController) {
     this.tasks = db.list('/tasks');
 
@@ -50,6 +51,11 @@ export class HomePage {
     });
   
     toast.present();
+  }
+
+  Finaliza(name){
+    
+    
   }
 
 }
