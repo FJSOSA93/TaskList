@@ -44,27 +44,27 @@
         <ion-item color="dark" *ngIf="!task.estado">
 
           <ion-item style="background-color:burlywood">
-          <ion-icon name="time" text-right></ion-icon>
-         <label type="text" style="background-color: burlywood">{{task.name}}</label>
-         
+            <ion-icon name="time" text-right></ion-icon>
+            <label type="text" style="background-color: burlywood">{{task.name}}</label>
+
           </ion-item>
-         
+
         </ion-item>
 
         <ion-item color="dark" *ngIf="task.estado">
-            
-                      <ion-item style="background-color:green"> 
-                        <ion-icon name="checkbox"></ion-icon>
-                        <label type="text" style="background-color: green">{{task.name}}</label>
-                        
-                      </ion-item>
-                     
-                    </ion-item>
-            
+
+          <ion-item style="background-color:green">
+            <ion-icon name="checkbox"></ion-icon>
+            <label type="text" style="background-color: green">{{task.name}}</label>
+
+          </ion-item>
+
+        </ion-item>
+
 
 
         <ion-item-options side="right" (ionSwipe)="Finaliza(task.$key,task.estado)">
-          <button color="secondary" ion-button  expandable (click)="Finaliza(task.name)">
+          <button color="secondary" ion-button expandable (click)="Finaliza(task.name)">
             <ion-icon name="refresh-circle"></ion-icon>
           </button>
 
@@ -88,6 +88,6 @@
 
     </ion-list>
 
-  
+
   </ion-card>
 </ion-content>

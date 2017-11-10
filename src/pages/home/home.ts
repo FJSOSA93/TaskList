@@ -34,6 +34,7 @@ export class HomePage {
   addTask(newTask) {
     this.tasks.push(newTask);
     this.newTask = {name: '',estado:false};
+    this.presentToastguarda();
   }
 
 
@@ -51,9 +52,36 @@ export class HomePage {
     toast.present();
   }
 
+  presentToastguarda() {
+    let toast = this.toastCtrl.create({
+      message: 'Se ha guardado la tarea',
+      duration: 3000,
+      position: 'down'
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
+
+  presentToastfinal() {
+    let toast = this.toastCtrl.create({
+      message: 'Excelente continua asi!',
+      duration: 3000,
+      position: 'down'
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+  
+    toast.present();
+  }
+
   Finaliza(key,estado){
     this.tasks.update(key, {estado: true});
-    console.log("estado = "+estado);
+   
+    this.presentToastfinal();
   }
 
 }
