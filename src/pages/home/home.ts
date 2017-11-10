@@ -35,11 +35,7 @@ export class HomePage {
   addTask(newTask) {
     this.tasks.push(newTask);
     this.newTask = {name: '',estado:false};
-<<<<<<< HEAD
     this.presentToastguarda();
-=======
-    
->>>>>>> 3e65f4343d0492029ec6fbba17bd397ffd22180e
   }
 
 
@@ -72,7 +68,7 @@ export class HomePage {
 
   presentToastfinal() {
     let toast = this.toastCtrl.create({
-      message: 'Excelente continua asi!',
+      message: 'Se completo la tarea',
       duration: 3000,
       position: 'down'
     });
