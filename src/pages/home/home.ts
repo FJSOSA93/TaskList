@@ -12,16 +12,14 @@ export class HomePage {
   tasks: FirebaseListObservable<any[]>;
   items = []; // Variable para ordenar items
   status= false;
-  newTask = {name: ''};
+  newTask = {name: '',estado:false};
   
   
   constructor(public navCtrl: NavController,public db: AngularFireDatabase, private toastCtrl: ToastController) {
     this.tasks = db.list('/tasks');
 
     // funciona para reordenar los items
-    for (var x = 0; x < 5; x++) {
-      this.items.push(x);
-    }
+  
   }
 
   updateTask(key, name) {
@@ -35,7 +33,7 @@ export class HomePage {
 
   addTask(newTask) {
     this.tasks.push(newTask);
-    this.newTask = {name: ''};
+    this.newTask = {name: '',estado:false};
   }
 
 
@@ -53,8 +51,8 @@ export class HomePage {
     toast.present();
   }
 
-  Finaliza(name){
-    
+  Finaliza(key,estado){
+    this.tasks.update(key, {estado: true});
     
   }
 
