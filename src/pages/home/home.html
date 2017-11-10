@@ -12,15 +12,17 @@
 <ion-content padding>
   <ion-list>
     
-        <ion-item-sliding *ngFor="let task of tasks | async">
+        <ion-item-sliding *ngFor="let task of tasks | async" ion-text>
         
           <ion-item>
         <input type="text" [(ngModel)]="task.name">
+    
           </ion-item>
-        <ion-item-options side="right">
-        <button ion-button (click)="addTask(newTask)"><ion-icon name="add-circle"></ion-icon></button>
+        <ion-item-options side="right" ion-text>
+
+        
         <button color="secondary" ion-button (click)="updateTask(task.$key, task.name)"><ion-icon name="refresh-circle"></ion-icon></button>
-        <button color="danger" ion-button (click)="removeTask(task)"><ion-icon name="trash"></ion-icon></button>
+        <button color="danger" ion-button (click)="removeTask(task)"><ion-icon name="add-circle"></ion-icon></button>
         
       </ion-item-options>
         
@@ -31,6 +33,11 @@
       </ion-item-sliding>
 
     </ion-list>
+
+    <ion-fab right bottom>
+        <button ion-fab (click)="addTask(newTask)" id="uno"><ion-icon name="cloud-upload"></ion-icon></button>
+          
+    </ion-fab>
 
 </ion-content>
 
