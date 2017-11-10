@@ -9,33 +9,47 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding fondoitem>
   <ion-list>
-    
+      
         <ion-item-sliding *ngFor="let task of tasks | async" ion-text>
-        
+            
+            <ion-item>
+                <ion-checkbox dark col-1></ion-checkbox>
+                <ion-input type="text" [(ngModel)]="task.name" col-9></ion-input>
+                <button ion-button col-3></button>
+            </ion-item>
+          <!--
           <ion-item>
-        <input type="text" [(ngModel)]="task.name">
-    
-          </ion-item>
+        
+        <ion-checkbox dark checked="true" disabled="true" col-1></ion-checkbox>
+        <input type="text" [(ngModel)]="task.name" col-9>
+        <button color="secondary" ion-button (click)="updateTask(task.$key, task.name)" col-3><ion-icon name="refresh-circle"></ion-icon></button>
+        </ion-item>     -->  
+        
         <ion-item-options side="right" ion-text>
 
         
-        <button color="secondary" ion-button (click)="updateTask(task.$key, task.name)"><ion-icon name="refresh-circle"></ion-icon></button>
         <button color="danger" ion-button (click)="removeTask(task)"><ion-icon name="add-circle"></ion-icon></button>
         
       </ion-item-options>
         
-        <ion-item-options side="left">
+        <ion-item-options side="left" (ionSwipe)="removeTask(task)">
+
+            <button ion-button color="danger" expandable (click)="removeTask(task)">
+                <ion-icon name="trash">  Borrar</ion-icon>
+            </button>
           
         </ion-item-options>
        
       </ion-item-sliding>
 
+     
+
     </ion-list>
 
     <ion-fab right bottom>
-        <button ion-fab (click)="addTask(newTask)" id="uno"><ion-icon name="cloud-upload"></ion-icon></button>
+        <button ion-fab (click)="addTask(newTask)" id="uno"><ion-icon name="md-add-circle"></ion-icon></button>
           
     </ion-fab>
 
